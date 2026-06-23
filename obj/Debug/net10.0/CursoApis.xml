@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CursoApis</name>
+    </assembly>
+    <members>
+        <member name="T:CursoApis.Controllers.UserController">
+            <summary>
+            Controlador HTTP para gestionar usuarios (listar, obtener, crear, actualizar y eliminar).
+            </summary>
+        </member>
+        <member name="M:CursoApis.Controllers.UserController.GetAllUsers">
+            <summary>
+            Retorna todos los usuarios registrados.
+            </summary>
+            <returns>Lista completa de usuarios.</returns>
+        </member>
+        <member name="M:CursoApis.Controllers.UserController.GetUserById(System.Int32)">
+            <summary>
+            Retorna un usuario por su identificador.
+            </summary>
+            <param name="id">Id del usuario a buscar.</param>
+            <returns>Usuario encontrado o 404 si no existe.</returns>
+        </member>
+        <member name="M:CursoApis.Controllers.UserController.CreateUser(CursoApis.Models.User)">
+            <summary>
+            Crea un nuevo usuario con los datos recibidos en el cuerpo.
+            </summary>
+            <param name="user">Datos del nuevo usuario.</param>
+            <returns>Usuario creado con respuesta 201.</returns>
+        </member>
+        <member name="M:CursoApis.Controllers.UserController.UpdateUser(System.Int32,CursoApis.Models.User)">
+            <summary>
+            Actualiza un usuario existente según su identificador.
+            </summary>
+            <param name="id">Id del usuario a actualizar.</param>
+            <param name="user">Nuevos datos del usuario.</param>
+            <returns>Usuario actualizado o 404 si no existe.</returns>
+        </member>
+        <member name="M:CursoApis.Controllers.UserController.DeleteUser(System.Int32)">
+            <summary>
+            Elimina un usuario por su identificador.
+            </summary>
+            <param name="id">Id del usuario a eliminar.</param>
+            <returns>Usuario eliminado o 404 si no existe.</returns>
+        </member>
+        <member name="M:CursoApis.Controllers.WeatherForecastController.GetByPosition(Microsoft.Extensions.Logging.ILogger{CursoApis.Controllers.WeatherForecastController},System.Int32)">
+            <summary>
+            Retorna un elemento por su índice dentro de la lista en memoria.
+            </summary>
+            <param name="logger">Logger inyectado por ASP.NET para registrar eventos.</param>
+            <param name="id">Posición del elemento dentro de la lista.</param>
+            <returns>El pronóstico encontrado o un error si el índice no existe.</returns>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type)">
+            <summary>
+            Generates a documentation comment ID for a type.
+            Example: T:Namespace.Outer+Inner`1 becomes T:Namespace.Outer.Inner`1
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.PropertyInfo)">
+            <summary>
+            Generates a documentation comment ID for a property.
+            Example: P:Namespace.ContainingType.PropertyName or for an indexer P:Namespace.ContainingType.Item(System.Int32)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type,System.String)">
+            <summary>
+            Generates a documentation comment ID for a property given its container type and property name.
+            Example: P:Namespace.ContainingType.PropertyName
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.MethodInfo)">
+            <summary>
+            Generates a documentation comment ID for a method (or constructor).
+            For example:
+              M:Namespace.ContainingType.MethodName(ParamType1,ParamType2)~ReturnType
+              M:Namespace.ContainingType.#ctor(ParamType)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.GetTypeDocId(System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            Generates a documentation ID string for a type.
+            This method handles nested types (replacing '+' with '.'),
+            generic types, arrays, pointers, by-ref types, and generic parameters.
+            The <paramref name="includeGenericArguments"/> flag controls whether
+            constructed generic type arguments are emitted, while <paramref name="omitGenericArity"/>
+            controls whether the generic arity marker (e.g. "`1") is appended.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.NormalizeDocId(System.String)">
+            <summary>
+            Normalizes a documentation comment ID to match the compiler-style format.
+            Strips the return type suffix for ordinary methods but retains it for conversion operators.
+            </summary>
+            <param name="docId">The documentation comment ID to normalize.</param>
+            <returns>The normalized documentation comment ID.</returns>
+        </member>
+    </members>
+</doc>

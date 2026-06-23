@@ -1,0 +1,8 @@
+@CursoApis_HostAddress = http://localhost:5187
+
+GET {{CursoApis_HostAddress}}/api/weatherforecast/
+
+@id=1
+GET {{CursoApis_HostAddress}}/api/weatherforecast/{{id}}
+
+###

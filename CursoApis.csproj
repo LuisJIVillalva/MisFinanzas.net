@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <!-- Configuración general del proyecto web ASP.NET Core -->
+    <PropertyGroup>
+        <!-- Framework de destino que compilará este proyecto -->
+        <TargetFramework>net10.0</TargetFramework>
+        <!-- Activa chequeos de referencias nulas -->
+        <Nullable>enable</Nullable>
+        <!-- Permite usar namespaces comunes sin escribir todos los using manualmente -->
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <!-- Paquetes NuGet utilizados por la API -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.8"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.9"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.9"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.9"/>
+        <PackageReference Include="Scalar.AspNetCore.Swashbuckle" Version="2.16.4"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="10.2.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.2.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.2.1"/>
+    </ItemGroup>
+
+    <!-- Configuración para generar el archivo XML de comentarios y usarlo en Swagger -->
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <!-- 1591 evita warnings por comentarios XML faltantes en miembros públicos -->
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+
+</Project>
