@@ -14,13 +14,25 @@ var builder = WebApplication.CreateBuilder(args);
 // AddLogging permite usar ILogger<T> en controladores, servicios y middlewares.
 builder.Services.AddLogging();
 // AddControllers habilita que ASP.NET descubra y ejecute clases marcadas como Controller.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(x => 
+        x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
 // AddOpenApi expone el documento OpenAPI nativo de ASP.NET Core.
 builder.Services.AddOpenApi();
 // Registramos EF Core con una base en memoria para poder practicar sin una BD real.
+// DB en memoria
+// builder.Services.AddDbContext<AppDbContext>(options => { options.UseInMemoryDatabase("CursoApisDb"); });
+//DB SQLServer
+// builder.Services.AddDbContext<AppDbContext>(options =>
+// {
+//     var connectionString = builder.Configuration.GetConnectionString("SqlServerConnection");
+//     options.UseSqlServer(connectionString);
+// });
+//DB POSTGRES
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseInMemoryDatabase("CursoApisDb");
+    var connectionString = builder.Configuration.GetConnectionString("PostgresConnection");
+    options.UseNpgsql(connectionString);
 });
 
 // SwaggerGen genera la interfaz de Swagger y lee comentarios XML del código.

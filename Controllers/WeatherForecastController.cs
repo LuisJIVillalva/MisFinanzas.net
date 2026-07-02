@@ -38,7 +38,7 @@ public class WeatherForecastController : ControllerBase
     }
 
     /// <summary>
-    /// Retorna un elemento por su índice dentro de la lista en memoria.
+    ///     Retorna un elemento por su índice dentro de la lista en memoria.
     /// </summary>
     /// <param name="logger">Logger inyectado por ASP.NET para registrar eventos.</param>
     /// <param name="id">Posición del elemento dentro de la lista.</param>

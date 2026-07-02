@@ -9,7 +9,9 @@ public class BasicAuthMiddleware
 {
     // Usuario y contraseña "hardcodeados" para el curso
     private const string DemoUsername = "platzi";
+
     private const string DemoPassword = "12345";
+
     // _next representa el siguiente middleware del pipeline.
     private readonly RequestDelegate _next;
 
@@ -38,24 +40,17 @@ public class BasicAuthMiddleware
             // Leer encabezado Authorization
             var authHeaderValue = context.Request.Headers.Authorization.ToString();
             if (string.IsNullOrWhiteSpace(authHeaderValue))
-            {
                 throw new InvalidOperationException("Authorization header faltante.");
-            }
 
             var authHeader = AuthenticationHeaderValue.Parse(authHeaderValue);
             if (string.IsNullOrWhiteSpace(authHeader.Parameter))
-            {
                 throw new InvalidOperationException("Authorization header inválido.");
-            }
 
             // Decodificar credenciales base64
             var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
             var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':', 2);
 
-            if (credentials.Length < 2)
-            {
-                throw new InvalidOperationException("Credenciales incompletas.");
-            }
+            if (credentials.Length < 2) throw new InvalidOperationException("Credenciales incompletas.");
 
             var username = credentials[0];
             var password = credentials[1];

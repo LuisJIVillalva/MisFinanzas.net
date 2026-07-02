@@ -9,9 +9,11 @@ La idea de este README es que te sirva como guía de estudio mientras avanzas en
 ## Cómo está organizado el proyecto
 
 ### `Program.cs`
+
 Es el punto de entrada de la aplicación.
 
 Ahí se hace todo esto:
+
 - se registran servicios en el contenedor de dependencias
 - se configura Entity Framework Core
 - se configura Swagger / OpenAPI
@@ -24,15 +26,18 @@ Piensa en `Program.cs` como el archivo que **arma la aplicación**.
 ---
 
 ### `Controllers/`
+
 Los controladores reciben las peticiones HTTP.
 
 Ejemplo:
+
 - `GET`
 - `POST`
 - `PUT`
 - `DELETE`
 
 Un controlador normalmente:
+
 1. recibe la petición
 2. valida datos
 3. llama a un servicio
@@ -41,14 +46,17 @@ Un controlador normalmente:
 ---
 
 ### `Models/`
+
 Aquí están las clases que representan los datos del sistema.
 
 En este proyecto:
+
 - `User` representa un usuario
 - `TaskItem` representa una tarea
 - `WeatherForecast` representa un pronóstico de clima
 
 Estas clases después se usan en:
+
 - controladores
 - servicios
 - Entity Framework
@@ -57,9 +65,11 @@ Estas clases después se usan en:
 ---
 
 ### `Data/AppDbContext.cs`
+
 Es la clase que representa la conexión lógica con la base de datos.
 
 Define:
+
 - qué entidades existen (`Users`, `TaskItems`)
 - cómo se relacionan entre sí
 - restricciones como campos obligatorios o largos máximos
@@ -71,15 +81,18 @@ Piensa en `AppDbContext` como el archivo donde le explicas a Entity Framework:
 ---
 
 ### `Services/`
+
 Los servicios contienen la lógica de acceso a datos o reglas del negocio.
 
 La idea es **no meter toda la lógica en el controlador**.
 
 Ejemplo:
+
 - el controlador recibe la petición
 - el servicio hace el trabajo real con la base de datos
 
 Esto ayuda a que el código quede:
+
 - más ordenado
 - más reutilizable
 - más fácil de mantener
@@ -87,9 +100,11 @@ Esto ayuda a que el código quede:
 ---
 
 ### `Middlewares/`
+
 Los middlewares son pasos por los que pasa cada request antes de llegar al controlador.
 
 Ejemplo en este proyecto:
+
 - `BasicAuthMiddleware` valida usuario y contraseña
 - `RequestLoggingMiddleware` registra en consola qué request entró y qué respuesta salió
 
@@ -98,14 +113,17 @@ Piensa en ellos como filtros o guardias que revisan la petición en el camino.
 ---
 
 ### `appsettings.json`
+
 Guarda configuración de la aplicación.
 
 Por ejemplo:
+
 - niveles de logging
 - hosts permitidos
 - cadenas de conexión en proyectos más grandes
 
-> Nota: no agregué comentarios dentro de los archivos `json` porque JSON no soporta comentarios y se rompería el archivo.
+> Nota: no agregué comentarios dentro de los archivos `json` porque JSON no soporta comentarios y se rompería el
+> archivo.
 
 ---
 
@@ -116,13 +134,16 @@ Voy a explicarlo con la forma en que está armado este proyecto.
 ---
 
 ### 1. Crear o identificar el modelo
+
 Primero necesitas una entidad sobre la que vas a trabajar.
 
 Ejemplo:
+
 - `User`
 - `TaskItem`
 
 Archivo de ejemplo:
+
 - `Models/User.cs`
 - `Models/TaskItem.cs`
 
@@ -140,6 +161,7 @@ public class User
 ---
 
 ### 2. Agregar la entidad al `AppDbContext`
+
 Después debes decirle a Entity Framework que esa entidad existe.
 
 En `Data/AppDbContext.cs`:
@@ -163,6 +185,7 @@ modelBuilder.Entity<User>(entity =>
 ---
 
 ### 3. Crear la interfaz del servicio
+
 Primero se define el contrato.
 
 Ejemplo en `Services/IUserServices.cs`:
@@ -183,6 +206,7 @@ La interfaz responde esta pregunta:
 ---
 
 ### 4. Crear la implementación del servicio
+
 Ahora se crea la clase real que implementa la interfaz.
 
 Ejemplo en `Services/UserServices.cs`:
@@ -217,22 +241,24 @@ public class UserService : IUserService
 ```
 
 ### Qué hace cada parte
+
 - `private readonly AppDbContext _context;`
-  - guarda la referencia a la base de datos
+    - guarda la referencia a la base de datos
 - constructor con `AppDbContext`
-  - recibe el contexto por inyección de dependencias
+    - recibe el contexto por inyección de dependencias
 - `AsNoTracking()`
-  - mejora rendimiento cuando solo lees
+    - mejora rendimiento cuando solo lees
 - `ToListAsync()`
-  - ejecuta la consulta y devuelve una lista
+    - ejecuta la consulta y devuelve una lista
 - `FirstOrDefaultAsync()`
-  - busca el primer elemento o devuelve `null`
+    - busca el primer elemento o devuelve `null`
 - `SaveChangesAsync()`
-  - guarda cambios en la base de datos
+    - guarda cambios en la base de datos
 
 ---
 
 ### 5. Registrar el servicio en `Program.cs`
+
 Si no registras el servicio, ASP.NET no podrá inyectarlo.
 
 Ejemplo:
@@ -248,6 +274,7 @@ builder.Services.AddScoped<ITaskServices, TaskServices>();
 ```
 
 ### Qué significa `AddScoped`
+
 Significa que se crea una instancia del servicio por cada request HTTP.
 
 Es la opción más común para servicios que usan `DbContext`.
@@ -255,6 +282,7 @@ Es la opción más común para servicios que usan `DbContext`.
 ---
 
 ### 6. Usar el servicio en un controlador
+
 Una vez registrado, puedes pedirlo en el constructor del controlador.
 
 Ejemplo:
@@ -283,6 +311,7 @@ public class UsersController : ControllerBase
 ---
 
 ### 7. Probarlo en Swagger
+
 Cuando levantes el proyecto, puedes abrir Swagger y probar los endpoints.
 
 Comandos útiles:
@@ -296,6 +325,7 @@ dotnet watch run
 ---
 
 ## Resumen mental rápido
+
 Si quieres crear un servicio nuevo, piensa así:
 
 1. creo el modelo
@@ -308,6 +338,7 @@ Si quieres crear un servicio nuevo, piensa así:
 ---
 
 ## Ejemplo mental con una entidad nueva
+
 Si mañana quieres agregar `Product`, harías esto:
 
 1. crear `Models/Product.cs`
@@ -322,23 +353,29 @@ Si mañana quieres agregar `Product`, harías esto:
 ## Cosas importantes para entender mejor
 
 ### Controlador
+
 Habla HTTP.
 
 ### Servicio
+
 Hace trabajo de negocio o acceso a datos.
 
 ### DbContext
+
 Habla con la base de datos.
 
 ### Modelo
+
 Representa datos.
 
 ### Middleware
+
 Interviene en cada request antes o después del controlador.
 
 ---
 
 ## Sugerencia para estudiar este proyecto
+
 Te conviene leer los archivos en este orden:
 
 1. `Program.cs`
@@ -358,13 +395,16 @@ Ese orden ayuda porque va de lo más general a lo más concreto.
 ---
 
 ## Nota final
+
 Este proyecto tiene partes pensadas para aprender:
+
 - base en memoria
 - autenticación básica simple
 - controlador de clima con lista en memoria
 
 Eso está bien para estudiar.
 Más adelante normalmente se mejora con:
+
 - base de datos real
 - servicios registrados en DI
 - controladores separados por entidad

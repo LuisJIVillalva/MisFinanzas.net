@@ -6,32 +6,32 @@
     <members>
         <member name="T:CursoApis.Controllers.UserController">
             <summary>
-            Controlador HTTP para gestionar usuarios (listar, obtener, crear, actualizar y eliminar).
+                Controlador HTTP para gestionar usuarios (listar, obtener, crear, actualizar y eliminar).
             </summary>
         </member>
         <member name="M:CursoApis.Controllers.UserController.GetAllUsers">
             <summary>
-            Retorna todos los usuarios registrados.
+                Retorna todos los usuarios registrados.
             </summary>
             <returns>Lista completa de usuarios.</returns>
         </member>
         <member name="M:CursoApis.Controllers.UserController.GetUserById(System.Int32)">
             <summary>
-            Retorna un usuario por su identificador.
+                Retorna un usuario por su identificador.
             </summary>
             <param name="id">Id del usuario a buscar.</param>
             <returns>Usuario encontrado o 404 si no existe.</returns>
         </member>
         <member name="M:CursoApis.Controllers.UserController.CreateUser(CursoApis.Models.User)">
             <summary>
-            Crea un nuevo usuario con los datos recibidos en el cuerpo.
+                Crea un nuevo usuario con los datos recibidos en el cuerpo.
             </summary>
             <param name="user">Datos del nuevo usuario.</param>
             <returns>Usuario creado con respuesta 201.</returns>
         </member>
         <member name="M:CursoApis.Controllers.UserController.UpdateUser(System.Int32,CursoApis.Models.User)">
             <summary>
-            Actualiza un usuario existente según su identificador.
+                Actualiza un usuario existente según su identificador.
             </summary>
             <param name="id">Id del usuario a actualizar.</param>
             <param name="user">Nuevos datos del usuario.</param>
@@ -39,18 +39,42 @@
         </member>
         <member name="M:CursoApis.Controllers.UserController.DeleteUser(System.Int32)">
             <summary>
-            Elimina un usuario por su identificador.
+                Elimina un usuario por su identificador.
             </summary>
             <param name="id">Id del usuario a eliminar.</param>
             <returns>Usuario eliminado o 404 si no existe.</returns>
         </member>
         <member name="M:CursoApis.Controllers.WeatherForecastController.GetByPosition(Microsoft.Extensions.Logging.ILogger{CursoApis.Controllers.WeatherForecastController},System.Int32)">
             <summary>
-            Retorna un elemento por su índice dentro de la lista en memoria.
+                Retorna un elemento por su índice dentro de la lista en memoria.
             </summary>
             <param name="logger">Logger inyectado por ASP.NET para registrar eventos.</param>
             <param name="id">Posición del elemento dentro de la lista.</param>
             <returns>El pronóstico encontrado o un error si el índice no existe.</returns>
+        </member>
+        <member name="T:CursoApis.Migrations.InitialPostgres">
+            <inheritdoc />
+        </member>
+        <member name="M:CursoApis.Migrations.InitialPostgres.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CursoApis.Migrations.InitialPostgres.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CursoApis.Migrations.InitialPostgres.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CursoApis.Migrations.LowercaseIdentifiers">
+            <inheritdoc />
+        </member>
+        <member name="M:CursoApis.Migrations.LowercaseIdentifiers.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CursoApis.Migrations.LowercaseIdentifiers.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CursoApis.Migrations.LowercaseIdentifiers.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
         </member>
         <member name="T:Program">
             <summary>
